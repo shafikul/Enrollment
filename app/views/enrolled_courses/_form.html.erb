@@ -1,0 +1,23 @@
+<%= form_for(@enrolled_course) do |f| %>
+  <% if @enrolled_course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@enrolled_course.errors.count, "error" ) %> prohibited this enrolled_course from being saved:</h2>
+      <ul>
+      <% @enrolled_course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :Semester %>
+      <%= f.select("semester_id", Semester.all.collect {|s| [ s.Name, s.id ] }, {include_blank: true}) %>
+    </div>
+    <div class="field">
+      <%= f.label :Course %>
+      <%= f.select("course_id", Course.all.collect {|c| [ c.Name, c.id ] }, {include_blank: true}) %>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
